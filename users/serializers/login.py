@@ -25,10 +25,7 @@ class LoginSerializer(serializers.Serializer):
             user = CustomUser.objects.filter(phone=attrs['phone']).first()
             if not user:
                 user = CustomUser.objects.create_user(phone=attrs['phone'])
-                attrs['user'] = user
-                # raise ValidationError('User with this phone number not found, please, sign up!')
-            else:
-                attrs['user'] = user
+            attrs['user'] = user
         else:
             raise ValidationError('"phone" field not found, try again!')
 

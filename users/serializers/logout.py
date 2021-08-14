@@ -3,8 +3,6 @@ from rest_framework.validators import ValidationError
 from django.contrib.auth import logout
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from users.models import CustomUser
-
 
 class LogoutSerializer(Serializer):
     refresh = CharField(max_length=500, required=True)
