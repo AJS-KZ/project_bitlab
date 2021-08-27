@@ -16,3 +16,13 @@ class UserSerializer(ModelSerializer):
             'created_at',
             'updated_at',
         )
+
+
+class UserMinValueSerializer(ModelSerializer):
+
+    class Meta:
+        model = CustomUser
+        fields = (
+            'uuid',
+            'phone',
+        )

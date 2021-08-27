@@ -22,7 +22,7 @@ class QuestionnaireSerializer(serializers.ModelSerializer):
         }
 
     def _get_answers(self, question_id):
-        answers = AnswerSerializer(Answer.objects.filter(question_id=question_id), many=True).data
+        answers = AnswerTextSerializer(Answer.objects.filter(question_id=question_id), many=True).data
         return answers
 
     def add_questions(self, questionnaire_id):

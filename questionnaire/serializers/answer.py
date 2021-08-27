@@ -20,4 +20,11 @@ class AnswerTextSerializer(ModelSerializer):
 
     class Meta:
         model = Answer
-        fields = ('text', )
+        fields = ('uuid', 'text', )
+
+
+class AnswerUUIDSerializer(ModelSerializer):
+
+    class Meta:
+        model = Answer
+        fields = ('uuid', )

@@ -22,4 +22,4 @@ class Questionnaire(AbstractUUID, AbstractTimeTracker):
         verbose_name_plural = 'Вопросники'
 
     def __str__(self):
-        return self.title
+        return str(self.uuid)

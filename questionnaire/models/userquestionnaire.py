@@ -30,6 +30,6 @@ class UserQuestionnaire(AbstractUUID, AbstractTimeTracker):
     )
 
     class Meta:
-        verbose_name = 'Ответ пользователя'
-        verbose_name_plural = 'Ответы пользователей'
+        verbose_name = 'UserQuestionnaire'
+        verbose_name_plural = 'UserQuestionnaires'
         order_with_respect_to = 'author'

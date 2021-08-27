@@ -1,4 +1,4 @@
-from django.contrib.auth import login, logout
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
@@ -14,6 +14,17 @@ class LoginViewSet(APIView):
     serializer_class = LoginSerializer
     queryset = CustomUser.objects.all()
 
+    @swagger_auto_schema(
+        request_body=LoginSerializer,
+        responses={
+            '200': "If user sent correct OTP, endpoint will return user info and token",
+            '400': "Bad Request"
+        },
+        security=[],
+        operation_id='LoginUser',
+        operation_description='Authenticate Users',
+        tags=['Login/Logout'],
+    )
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)

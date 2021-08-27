@@ -1,6 +1,12 @@
 from django.contrib import admin
 
-from questionnaire.models import Questionnaire, Question, Answer
+from questionnaire.models import (
+    Questionnaire,
+    Question,
+    Answer,
+    UserQuestionnaire,
+    UserAnswer,
+)
 
 
 @admin.register(Answer)
@@ -37,3 +43,13 @@ class QuestionnaireAdmin(admin.ModelAdmin):
         if obj:
             return ['start_date']
         return self.readonly_fields
+
+
+@admin.register(UserQuestionnaire)
+class UserQuestionnaireAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(UserAnswer)
+class UserAnswerAdmin(admin.ModelAdmin):
+    pass

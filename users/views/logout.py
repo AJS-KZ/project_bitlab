@@ -1,3 +1,4 @@
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
@@ -11,6 +12,17 @@ class LogoutViewSet(APIView):
     permission_classes = (IsAuthenticated, )
     serializer_class = LogoutSerializer
 
+    @swagger_auto_schema(
+        request_body=LogoutSerializer,
+        responses={
+            '200': "If user sent correct refresh token, endpoint will blacklist token",
+            '400': "Bad Request"
+        },
+        security=[],
+        operation_id='LogoutUser',
+        operation_description='Logout Users',
+        tags=['Login/Logout'],
+    )
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)

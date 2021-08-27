@@ -26,5 +26,5 @@ class UserAnswer(AbstractUUID, AbstractTimeTracker):
     )
 
     class Meta:
-        verbose_name = 'Ответ пользователя'
-        verbose_name_plural = 'Ответы пользователя'
+        verbose_name = 'UserAnswer'
+        verbose_name_plural = 'UserAnswers'
