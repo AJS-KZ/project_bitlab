@@ -21,7 +21,7 @@ class CustomUserAdmin(UserAdmin):
         ),
         (
             'Additional information', {
-                'fields': ('first_name', 'last_name', 'avatar',)
+                'fields': ('first_name', 'last_name', 'avatar', 'gender')
             }
         ),
         (

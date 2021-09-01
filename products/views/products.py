@@ -36,7 +36,7 @@ class ProductViewSet(mixins.CreateModelMixin,
 
         if self.action == 'retrieve' or self.action == 'create':
             permission_classes = [IsAuthenticated, ProductOwnerOrReadOnly]
-        elif self.action == 'update' or self.action == 'partial_update':
+        elif self.action == 'update' or self.action == 'partial_update' or self.action == 'destroy':
             permission_classes.append(ProductOwnerOrReadOnly)
 
         return [permission() for permission in permission_classes]
@@ -63,7 +63,6 @@ class ProductViewSet(mixins.CreateModelMixin,
         return Response(data=serializer_data, status=status.HTTP_201_CREATED)
 
     def list(self, request, *args, **kwargs):
-        # instance = self.get_products()
         filtered_queryset = self.filter_queryset(self.queryset.all())
         serializer = self.get_serializer(filtered_queryset, many=True)
         return Response(serializer.data)

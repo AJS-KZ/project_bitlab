@@ -1,8 +1,10 @@
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 from utils.models import AbstractUUID, AbstractTimeTracker
 from users.managers import CustomUserManager
+from utils.const import GenderChoice
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin, AbstractUUID, AbstractTimeTracker):
@@ -30,6 +32,13 @@ class CustomUser(AbstractBaseUser, PermissionsMixin, AbstractUUID, AbstractTimeT
         null=True,
         unique=True,
         verbose_name='email'
+    )
+    gender = models.CharField(
+        choices=GenderChoice.choice(),
+        max_length=6,
+        blank=True,
+        null=True,
+        verbose_name=_('gender')
     )
     is_staff = models.BooleanField(
         default=True

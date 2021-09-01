@@ -5,9 +5,17 @@ from django_filters import rest_framework as filters
 from products.models import Product
 
 
+# class ProductFilterSet(filters.FilterSet):
+#     name = filters.CharFilter(field_name='name', lookup_expr='contains')
+#     cost = filters.NumberFilter(field_name='cost', lookup_expr='gt')
+#
+#     class Meta:
+#         model = Product
+#         fields = ('name', 'description', 'cost', 'owner')
+
 class ProductFilterSet(filters.FilterSet):
     search = filters.CharFilter(method='filter_by_value', label='Search')
-    cost = django_filters.NumberFilter(field_name='cost', lookup_expr='lt')
+    cost = filters.NumberFilter(field_name='cost', lookup_expr='lt')
 
     class Meta:
         model = Product
@@ -19,6 +27,6 @@ class ProductFilterSet(filters.FilterSet):
             list_of_words = list(map(str, self.request.query_params['search'].split()))
             for word in list_of_words:
                 filter_params |= Q(name__contains=word)
-                # filter_params |= Q(description__contains=word)
+                filter_params |= Q(description__contains=word)
         result = queryset.filter(filter_params)
         return result
